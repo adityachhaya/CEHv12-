@@ -1,0 +1,36 @@
+Nmap Cheat Sheet
+
+
+sudo nmap -sN (NULL scan No flag)
+sudo nmap -sF (FIN scan uses FIN(FINESH) Flag)
+sudo nmap -sX (XMAS scan uses FIN, PSH, & URG flags simultaneously)
+sudo nmap -sM (Maimon scan uses FIN & ACk flags)
+sudo nmap -sA (ACK scan use ACK flag)
+sudo nmap -sW (Window scan use ACK flag same as ACK scan)
+sudo nmap --scanflags URGACKPSHRSTSYNFIN (Custom scan use custom flags as required)
+sudo nmap -S SPOOFED_IP (Spoofed scan uses ip address of machine specified)
+sudo nmap -D DECOY_IP,ME (Decoy scan uses decoy ip and machine ip to bypass firewall, we can specify more than 1 decoy ip and also set random decoy by RND)
+sudo nmap -sI ZOMBIE_IP (Zombie scan we need and machine from where we can send request rather than actual machine it can be printer, camera anything havin ip address)
+
+
+some important flags
+-f - to fragment IP data into 8 bytes
+-ff or -f -f to fragment Ip data into 16 bytes
+--reason explains how NMAP mad its conslusion
+-v verbise
+-vv very verbose
+-d debugging
+-dd more details for debugging
+-F to Fast scan use 100 port than 1000
+-sC to run default script
+-sV to check version of services
+-A to run agrresive scan
+-sT for TCP scan
+-sU for UDP scan
+-sS for stealth scan
+-O OS detection
+
+Timing(-T0 - -T5)
+default -T3
+-T0 slowest
+-T5 Fatest

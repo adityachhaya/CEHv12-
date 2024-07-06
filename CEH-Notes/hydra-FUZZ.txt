@@ -1,0 +1,11 @@
+hydra -l username -P /usr/share/wordlist IP_address ssh
+-l for user -p for password
+-L for userlist -P for passwordlsit
+
+
+FFuf for finding subpage on website:
+
+ffuf -u <url/FUZZ> -w /usr/share/wordlists/seclists/Discovery/Web-Content/big.txt (OR any other list)
+
+
+use "FUZZ" Keyword where we want to run the wordlist

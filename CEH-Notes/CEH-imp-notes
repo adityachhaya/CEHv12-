@@ -1,0 +1,221 @@
+>Get the metadata of youtube video:
+    https://mattw.io/youtube-metadata/
+
+>search for open FTP files:
+    https://www.searchftps.net/
+
+>Search for IoT devices;
+    https://shodan.io/
+
+>Finding the companys Domain & subdomains using netcraft
+    https://sitereport.netcraft.com/
+
+>Gather Personal information using peekyou online people search service;
+    https://www.peekyou.com
+
+>Gather an email list using theHarvester
+    $theHarvester -d microsoft.com -l 200 -b baidu
+        -d: target domain
+        -l: number of search
+        -b: search engine or database
+
+>Determine Target OS through passive Footprinting
+    https://search.censys.io/
+
+>Gather Personal Info from various social site using sherlock
+    $python3 sherlock.py satya nadella
+
+>Gather Information using Followerwonk
+    https://www.followerwonk.com/analyze
+
+>Gather Information about a target website using PING command line utility
+    $ping www.google.com -l 65500
+        -l:size of the packet in bytes
+        -f:fragment
+        -i:set Time To Live(TTL) to live value(max 255)
+
+>Gather Information about a target website using photon
+    $python3 photon.py -u http://www.certifiedhacker.com/
+    -Photon will find urls and javascripts files and store it into directory
+
+>Gather Information about target using central ops.
+    https://www.centralops.net/
+
+>Extract a company's data using web data extrator
+    This tool is available at: CEH-Tools>Module 2>Web Spider>Web Data Extractor>WDE
+
+    open exe & enter the urls
+    https://certifiedhacker.com
+
+>Mirror a Target website using httrack web site copier
+    Install winhttrack in windows machine
+
+>Gather Information about a target using Grecon
+    $python3 grecon.py
+    target: certifiedhacker.com
+
+>Gather a Wordlist from a target website using cewl
+    $cewl -d 2 -m 5 www.certifiedhacker.com
+    -d: depth
+    -m: min size of Wordlist
+    -w: to store output in files
+
+>Gather Information about a target by Tracing Email using eMailTracker Pro
+    Tool is available at: CEH-Tools>Modules 2>Email tracking tools> emailtracer Pro
+    Copy the original of any mail and paste it is emailtracker pro to get geolocation
+    OR
+    https://www.readnotify.com/
+
+>perform whois lookup using Domain Tools
+    https://whois.domaintools.com/
+
+>Gather DNS info using nslookup command Line Utility
+    $nslookup
+    >set type=a (for getting IP address)
+    >set type=cname(For searching Primary name server)
+    OR
+    www.kloth.net
+
+>Perform Reverse DNS lookup using Reverse IP Domain & DNSRecon
+    https://www.yougetsignal.com/
+
+>Gather Information using Security Trails
+    https://securitytrails.com/
+
+>Perform Network Traceroute
+    $tracert www.certifiedhacker.com
+
+>Footprinting using Recon-ng
+    $recon-ng
+    >workspaces create <workspace name>
+    >workspaces list
+    >db insert domain
+    :enter domain
+    >show domains
+    >modules load brute
+    >modules load recon/domains-hosts/brute-hosts
+    >run
+
+>Perform NetBios enumeration using Windows Command Line Utility
+    admin>nbstat -a 10.10.1.11
+    -a:display netbios name table of remort computer
+    -c:Netbios remort cache Name table
+
+>Perform NetBios Enumeration using NetBios enumerator
+    Tool available at CEH-Tools>Module 4>Netbios>NetBios Enumerator
+    Open the executable and enter the Network Range to scan
+
+>Perform NetBIoS Enumeration using NSE script:
+    $sudo nmap -sV --script nbstat.nse 10.10.1.22
+    $sudo nmap -sU -p 137 --script nbstat.nse 10.10.1.22
+
+>Perform snmp-enumeration using snmp-check
+    $snmp-check 10.10.1.22
+
+>Perform snmp-Enumeration using soft Perfect Network scanner
+    open softperfect in windows machine and enter the network range to scan
+
+>Perform SNMP enumeration using snmp-walk
+    $sudo snmpwalk -v1 -c public 10.10.1.22
+    -v1: snmp version
+    -c: community string
+
+>Perform SNMP Enumeration using Nmap
+    $sudo nmap -sU -p 161 --script=snmp-sysdescr 10.10.1.22
+    $sudo nmap -sU -p 161 --script=snmp-win32-software 10.10.1.22
+    $sudo nmap -sU -p 161 --script=snmp-processes 10.10.1.22
+    $sudo nmap -sU -p 161 --script=snmp-interfaces 10.10.1.22
+
+>Perform LDAP Enumeration using AD explorer
+    Tools available at CEH-Tools>LDAP Enumeration>Active Directory>Explorer
+
+    Open exe and enter the target IP address
+
+>Perform LDAP Enumeration using python & nmap
+    $sudo nmap -sU -p 389 10.10.1.22
+    //Check LDAP port is open or readnotify
+    $sudo nmap -p 389 --script ldap-brute --script-args ldap.base'"cn=users,dc=CEH,dc=com"' 10.10.1.22
+
+    *using Pyhton
+    $python3
+    >>>import ldap3
+    >>>server = ldap3.Server('10.10.1.22'.get_info=ldap3.ALL,port=389)
+    >>>connection=ldap3.connection(server)
+    >>>connnection.bind()
+    >>>server.info
+    >>>connection.search(search_base='DC=CEH,DC=com', search_filter='(&(objectclass=*))',search_scope='SUBTREE',attributes='*')
+    >>>connection.entries
+    >>>connection.search(search_base='DC=CEH,DC=com', search_filter='(&(objectclass=person))',search_scope='SUBTREE',attributes='userpassword')
+    >>>connection.entries
+
+>Perform LDAP Enumeration using LDAPsearch
+    $ldapsearch -h 10.10.1.22 -x -s base namingcontexts
+    $ldapsearch -h 10.10.1.22 -x -b "DC=CEH,DC=com"
+    $ldapsearch -h 10.10.1.22 -x -b "DC=CEH,DC=com" "objectclass=*"
+
+>Perform NFS enumeration using RPCscan & superenum
+    $sudo nmap -p 2049 10.10.1.19
+    //To check NFS port is open or not
+
+    $echo "10.10.1.22">>target.txt
+    $./superenum
+     taget.txt
+
+    $python3 rpc-scan.py -rpc 10.10.1.19
+
+>Perform DNS enumeration using Zone Transfer
+    $dig ns www.certifiedhacker.com
+    ns:name server
+
+    $dig@ns1.bluehost.com www.certifiedhacker.com axfr
+    axfr: Zone Transfer
+    OR
+    admin> nslookup
+    admin> set querytype=soa
+    >certifiedhacker.com
+
+>Perform DNS enumeration using DNSSEC zone walking
+    $./dnsrecon.py -d www.certifiedhacker.com -z
+
+>Perform DNS Enumeration using NMAP
+    $sudo nmap -p 53 --script=broadcast-dns-service-discovery certifiedhacker.com
+    $sudo nmap -p 53 --script dns-brute certifiedhacker -T4
+    $sudo nmap --script dns-src-enum --script-args "dns-srv-enum.domain='certifiedhacker.com'"
+
+Perform SMTP Enumeration using NMAP
+    $sudo nmap -p 25 --script=smtp-enum-users 10.10.1.19
+    $sudo nmap -p 25 --script=smtp-open-relay 10.10.1.19
+    $sudo nmap -p 25 --script=smpt-commands 10.10.1.19
+
+>Perform SMB & RPC enumeration using NetscanTool pro
+    Tools: CEH-Tools>Module 3>scanning Tools>NetscanTool pro
+
+    Install exe then go to manual tiils>smb scanner & enter the target
+
+>Enumerate Informaiton from windows & samba hosts using Enum4Linux
+    $enum4linux -U martin -p apple -n 10.10.1.22
+
+>Perform web server & App vuln scanning using CGI scanner NIKTO
+    $nikto -h www.certifiedhacker.com
+
+>Hide Data using white space steganography
+    admin>snow -C -m "My secreat Message!!!!!!!!!" -p "magic" readme.txt readme2.txt
+    //to hide data
+
+    admin>snow -C -p "magic" readme2.txt
+    //to see hidden data
+
+>Image steganography using openstego & stegonline
+    -Install openstego in windows Machine
+    -Select hide to hide and enter message file & image file
+
+    -To extract just enter image file with hidden data
+
+>Covert Channel using cover TCP
+    -First Copy covert_tcp.c file to both machine
+    $./covert_tcp -dest 10.10.1.19 -source_port 9999 -dest_port 8888 -server -file /home/ubuntu/Destination /Receive/recive.txt
+
+    AT SENDER MACHINE
+    $ echo "Secreat Message" > message.txt
+
+    $./covert_tcp -dest 10.10.1.9 -source 10.10.1.13 -source_port 8888 -dest_port 9999 -file /home/share/attacker/Desktop/send/message.txt
